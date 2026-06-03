@@ -197,7 +197,6 @@ def main():
         row = {
             "Severity": it.get("severity", ""),
             "Patch name": it.get("title", ""),
-            "Patch Detail": it.get("_detail_ibs_id", ""),                # 來自詳細 API 的 ibs_id
             "Product(s)": prods_str,
             "Arch": archs_str,
             "Release": format_release_date_iso_to_ymd(it.get("issued_at", "")),
@@ -209,7 +208,6 @@ def main():
     df = pd.DataFrame(rows, columns=[
         "Severity",
         "Patch name",
-        "Patch Detail",
         "Product(s)",
         "Arch",
         "Release",

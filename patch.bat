@@ -1,0 +1,31 @@
+@echo off
+setlocal
+
+:: Prompt for the start date (format YYYY-MM-DD)
+set /p start_date="Enter start date (YYYY-MM-DD): "
+
+echo Start date is %start_date%
+
+:: Remove old xlsx files
+del /q *.xlsx 2>nul
+
+#uv run python main.py --product-names "SUSE Linux Enterprise Server LTSS" --since %start_date% --product-versions "12 SP5" --product-architectures x86_64 -o sles12sp5_patches.xlsx
+#echo [exit %errorlevel%] Created sles12sp5_patches.xlsx
+
+uv run python main.py --product-names "SUSE Linux Enterprise Server LTSS" --since %start_date% --product-versions "15 SP3" --product-architectures x86_64 -o sles15sp3_patches.xlsx
+echo [exit %errorlevel%] Created sles15sp3_patches.xlsx
+
+#uv run python main.py --product-names "SUSE Linux Enterprise Server LTSS" --since %start_date% --product-versions "15 SP4" --product-architectures x86_64 -o sles15sp4_patches.xlsx
+#echo [exit %errorlevel%] Created sles15sp4_patches.xlsx
+
+#uv run python main.py --product-names "SUSE Linux Enterprise Server LTSS" --since %start_date% --product-versions "15 SP5" --product-architectures x86_64 -o sles15sp5_patches.xlsx
+#echo [exit %errorlevel%] Created sles15sp5_patches.xlsx
+
+#uv run python main.py --product-names "SUSE Linux Enterprise Server LTSS" --since %start_date% --product-versions "15 SP6" --product-architectures x86_64 -o sles15sp6_patches.xlsx
+#echo [exit %errorlevel%] Created sles15sp6_patches.xlsx
+
+#uv run python main.py --product-names "SUSE Linux Enterprise Live Patching" --since %start_date% --product-versions "15 SP7" --product-architectures x86_64 -o sles15sp7_patches.xlsx
+#echo [exit %errorlevel%] Created sles15sp7_patches.xlsx
+
+endlocal
+pause
